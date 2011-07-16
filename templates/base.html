@@ -1,0 +1,134 @@
+{% load i18n %}
+<!DOCTYPE HTML>
+<html lang="pt-br" xml:lang="pt-br">
+    <head>
+        <title>{% block title %}Blog do Leandro Toledo{% endblock %}</title>
+        <meta charset="utf-8" />
+        <link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}styles/blueprint/screen.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="{{ STATIC_URL }}styles/blueprint/print.css" type="text/css" media="print">
+        <!--[if lt IE 8]><link rel="stylesheet" href="{{ STATIC_URL }}styles/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/default.css" media="all" />
+        <style type="text/css" media="print">img { display:none; }</style>
+    </head>
+    <body>
+        <div id="content">
+            <header>
+                <h1>Blog do Leandro Toledo</h1>
+                <p>
+                    <i>Se eu tiver uma maçã e você também tiver uma maçã, e trocarmos de maçãs, cada um ficará com uma maçã.<br />Se eu tiver uma ideia e você também tiver uma ideia, e trocarmos de ideias, cada um ficará com duas ideias.</i><br />
+                    <strong>George Bernard Shaw</strong>
+                </p>
+            </header>
+
+            <nav id="top-menu">
+                <a href="">Home</a>
+                <a href="">Sobre</a>
+                <a href="">Contato</a>
+                <a href="">Feed (RSS)</a>
+            </nav>
+
+            <div id="main">
+                <section id="articles">
+                    {% block articles %}{% endblock %}
+                </section>
+
+                <aside id="menu">
+                    {% if user.is_staff %}
+                    <h2>Administração</h2>
+                    <nav>
+                        <ul>
+                            <li><a href="{% url admin:index %}">Home</a></li>
+                            <li><a href="{% url admin:blog_post_add %}">Novo artigo</a></li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+
+                    <br />
+
+                    <h2>Pesquisar</h2>
+                    <nav>
+                        <ul>
+                            <li><a href="">Link</a></li>
+                        </ul>
+                    </nav>
+
+                    <br />
+
+                    <h2>Arquivos</h2>
+                    <nav>
+                        <ul>
+                            <li><a href="">Link</a></li>
+                        </ul>
+                    </nav>
+
+                    <br />
+
+                    <h2>Categorias</h2>
+                    <nav>
+                        {% if categories %}
+                            <ul>
+                            {% for category in categories %}
+                                <li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
+                            {% empty %}
+                                <li>Nada encontrado.</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </nav>
+
+                    <br />
+
+                    <h2>Blogs</h2>
+                    <nav>
+                        <ul>
+                            <li><a href="">Link</a></li>
+                        </ul>
+                    </nav>
+
+                    <br />
+
+                    <a class="powered-by-django" href=""><img src="{{ STATIC_URL }}images/powered_by_django.gif" alt="" /></a>
+                </aside>
+
+            </div>
+
+            <footer>
+                <div itemscope itemtype="http://n.whatwg.org/work">
+                    <a id="creative-commons-license" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width: 0;" src="{{ STATIC_URL }}images/buttons/creativecommons_by-nc-sa.png"></a>
+                    O <a itemprop="work" href="http://leandrotoledo.blog.br/"><span>Blog do Leandro Toledo</span></a> por <a itemprop="author" href="http://leandrotoledo.blog.br/author/"><span>Leandro Toledo de Souza</span></a> está sob a licença <a itemprop="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><abbr title="Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License"><span>CC-BY-NC-SA</span></abbr></a>.
+                </div>
+            </footer>
+        </div>
+
+        <section id="badges">
+            <ul>
+                <li>
+                    <a href="">
+                        <img src="{{ STATIC_URL }}images/buttons/valid-css3.png" alt="Tecnologia usada válida para CSS3" />
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="{{ STATIC_URL }}images/buttons/valid-html5.png" alt="Tecnologia usada válida para HTML5" />
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="{{ STATIC_URL }}images/buttons/valid-rss20.png" alt="Tecnologia usada válida para RSS 2.0" />
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="{{ STATIC_URL }}images/buttons/valid-ipv6.png" alt="Tecnologia usada válida para IPv6" />
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="{{ STATIC_URL }}images/buttons/valid-dnssec.png" alt="Tecnologia usada válida para DNSSEC" />
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </body>
+</html>

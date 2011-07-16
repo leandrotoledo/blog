@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ description|add:' - '|default_if_none:'' }}Blog do Leandro Toledo{% endblock %}
+
+{% block articles %}
+    {% if description %}
+        <h3>{{ description }}</h3>
+    {% endif %}
+
+    {% for post in posts.object_list %}
+        <article id="post" itemscope itemtype="http://schema.org/BlogPosting">
+            <h1 class="title">
+                <a href="{{ post.get_absolute_url }}"><span itemprop="name">{{ post.title }}</span></a>
+            </h1>
+            <p class="published-date">
+                Escrito por <span itemprop="author">Leandro Toledo</span> em <time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time>
+            </p>
+            <p class="comments">
+                4 comentários
+            </p>
+            <div class="excerpt" itemprop="description">{{ post.excerpt|escape|linebreaks }}</div>
+            <h4><a href="{{ post.get_absolute_url }}">Continue lendo »</a></h4>
+            <p class="keywords">
+                Categoria(s):
+                {% for category in categories %}
+                    <a href="{{ category.get_absolute_url }}"><span itemprop="keywords">{{ category }}</span></a>
+                {% empty %}
+                    Nenhuma categoria
+                {% endfor %}
+            </p>
+        </article>
+        <br /><br />
+    {% empty %}
+        Nada encontrado.
+    {% endfor %}
+
+    {% if posts.object_list and posts.paginator.num_pages > 1 %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if posts.has_previous %}
+                    <a href= "?page={{ posts.previous_page_number }}">newer entries &lt;&lt; </a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                </span>
+
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}"> &gt;&gt; older entries</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}

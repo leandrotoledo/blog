@@ -1,0 +1,100 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-07-10 03:33-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:9 models.py:54
+msgid "title"
+msgstr "Título"
+
+#: models.py:11
+msgid "Type the title here."
+msgstr "Digite o título aqui."
+
+#: models.py:15 models.py:59
+msgid "slug"
+msgstr "Slug"
+
+#: models.py:17
+msgid "Type the slug here."
+msgstr "Digite o slug aqui."
+
+#: models.py:21 models.py:91
+msgid "excerpt"
+msgstr "Resumo"
+
+#: models.py:22
+msgid "Abstracts are descriptions made manually on the content of your post."
+msgstr ""
+"Resumos são descrições feitas manualmente, sobre o conteúdo do seu post."
+
+#: models.py:25
+msgid "content"
+msgstr "Conteúdo."
+
+#: models.py:26
+#, fuzzy
+msgid "HTML is allowed."
+msgstr "O usdo de HTML é permitido."
+
+#: models.py:29
+msgid "date-created"
+msgstr "Data de criação"
+
+#: models.py:33
+msgid "date-updated"
+msgstr "Data de atualização"
+
+#: models.py:37
+msgid "date-published"
+msgstr "Data de publicação"
+
+#: models.py:88
+msgid "publish"
+msgstr "Publicação"
+
+#: models.py:94
+msgid "category"
+msgstr "Categoria"
+
+#: views.py:14
+#, fuzzy, python-format
+msgid "Archive of day %(day)s/%(month)s/%(year)s."
+msgstr "Archivo do dia %(day)s/%(month)s/%(year)s."
+
+#: views.py:17
+#, fuzzy, python-format
+msgid "Archive of month %(month)s/%(year)s."
+msgstr "Archivo do mês %(month)s/%(year)s."
+
+#: views.py:20
+#, fuzzy, python-format
+msgid "Archive of year %(year)s."
+msgstr "Arquivo do ano %(year)s."
+
+#: views.py:47
+msgid "category-archive"
+msgstr "Arquivo da categoria"
+
+#~ msgid "daily-archive"
+#~ msgstr "Arquivo do dia"
+
+#~ msgid "monthly-archive"
+#~ msgstr "Arquivo do mês"
+
+#~ msgid "yearly-archive"
+#~ msgstr "Arquivo do ano"

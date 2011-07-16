@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load comments %}
+
+{% block title %}{{ post.title }} - Blog do Leandro Toledo{% endblock %}
+
+{% block articles %}
+<article id="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title">
+        <span itemprop="name">{{ post.title }}</span>
+    </h1>
+    <p class="published-date">
+        Escrito por <span itemprop="author">Leandro Toledo</span> em <time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time>
+    </p>
+    <!--
+    <p class="comments">
+        4 comentários
+    </p>
+    -->
+    <br />
+    <section class="content" itemprop="articleBody">{{ post.content|escape|linebreaks }}</section>
+    <p class="keywords">
+        Categoria(s):
+        {% for category in categories %}
+            <a href="{{ category.get_absolute_url }}"><span itemprop="keywords">{{ category }}</span></a>
+        {% empty %}
+            Nenhuma categoria
+        {% endfor %}
+    </p>
+</article>
+
+<br />
+
+{% get_comment_count for post as comment_count %}
+{% if comment_count > 0 %}
+    <h2>{{ comment_count }} resposta(s) para este artigo</h2>
+
+    <dl id="comments">
+    {% get_comment_list for post as comment_list %}
+    {% for comment in comment_list %}
+        <dt id="c{{ comment.pk }}">
+            {% if comment.user_url %}
+            <strong><a href="{{ comment.user_url }}" target="_blank">{{ comment.user_name }}</a></strong> <em>disse:</em><br />
+            {% else %}
+            <strong>{{ comment.user_name }}</strong> <em>disse:</em><br />
+            {% endif %}
+            <span class="published-date">em <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:'d/m/Y - h:i A' }}</time></span>
+        </dt>
+        <dd>
+            {{ comment.comment }}
+        </dd>
+    {% endfor %}
+    </dl>
+{% endif %}
+
+<article id="responses">
+    {% get_comment_form for post as form %}
+    <h2>Deixe uma resposta</h2>
+
+    <form action="{% comment_form_target %}" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        <tr>
+            <th></th>
+            <td colspan="1">
+                <input type="submit" name="submit" value="Publicar">
+            </td>
+        </tr>
+        </table>
+    </form>
+</article>
+{% endblock %}
