@@ -11,11 +11,9 @@
     <p class="published-date">
         Escrito por <span itemprop="author">Leandro Toledo</span> em <time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time>
     </p>
-    <!--
     <p class="comments">
-        4 comentários
+        <a href="#comments-form">Deixe um comentário</a>
     </p>
-    -->
     <br />
     <section class="content" itemprop="articleBody">{{ post.content|escape|linebreaks }}</section>
     <p class="keywords">
@@ -32,7 +30,7 @@
 
 {% get_comment_count for post as comment_count %}
 {% if comment_count > 0 %}
-    <h2>{{ comment_count }} resposta(s) para este artigo</h2>
+    <h2><a name="comments-section" class="comments-anchor">{{ comment_count }} resposta(s) para este artigo</a></h2>
 
     <dl id="comments">
     {% get_comment_list for post as comment_list %}
@@ -54,14 +52,14 @@
 
 <article id="responses">
     {% get_comment_form for post as form %}
-    <h2>Deixe uma resposta</h2>
+    <h2><a name="comments-form" class="comments-anchor">Deixe um comentário</a></h2>
 
     <form action="{% comment_form_target %}" method="post">
         {% csrf_token %}
         <table>
         {{ form }}
         <tr>
-            <th></th>
+            <th><input type="hidden" name="next" value="{{ post.get_absolute_url }}" /></th>
             <td colspan="1">
                 <input type="submit" name="submit" value="Publicar">
             </td>

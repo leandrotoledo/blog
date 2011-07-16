@@ -16,9 +16,13 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^comments/', include('django.contrib.comments.urls')),
-    (r'^$', 'public_html.blog.views.index'),
 
-    url(r'^category/(?P<slug>[-\w]+)/$', 'public_html.blog.views.category'),
+    url(r'^$',
+        'public_html.blog.views.index',
+        name='index'),
+
+    url(r'^category/(?P<slug>[-\w]+)/$',
+        'public_html.blog.views.category'),
     # http://leandrotoledo.com.br/category/gnu-linux/
 
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
@@ -33,4 +37,12 @@ urlpatterns = patterns('',
     url(r'^(?P<year>\d{4})/$',
         'public_html.blog.views.index'),
     # http://leandrotoledo.com.br/2011/07/09/sparkleshare-uma-alternativa-livre-do-dropbox/
+
+    url(r'^about/$',
+        'public_html.blog.views.about',
+        name='about'),
+
+    url(r'^contact/$',
+        'public_html.blog.views.contact',
+        name='contact'),
 )

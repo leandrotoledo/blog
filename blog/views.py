@@ -53,6 +53,17 @@ def category(request, slug):
                                          'categories':       categories,
                                          'user':             request.user})
 
+def about(request):
+    categories = Category.objects.all()
+    return render(request, 'about.html', {'categories':      categories,
+                                          'user':            request.user})
+
+
+def contact(request):
+    categories = Category.objects.all()
+    return render(request, 'contact.html', {'categories':    categories,
+                                            'user':          request.user})
+
 
 def paginate(request, posts, posts_per_page=3):
     paginator = Paginator(posts, posts_per_page)

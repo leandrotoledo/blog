@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load comments %}
 
 {% block title %}{{ description|add:' - '|default_if_none:'' }}Blog do Leandro Toledo{% endblock %}
 
@@ -16,7 +17,12 @@
                 Escrito por <span itemprop="author">Leandro Toledo</span> em <time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time>
             </p>
             <p class="comments">
-                4 comentários
+                {% get_comment_count for post as comment_count %}
+                {% if comment_count > 0 %}
+                    <a href="{{ post.get_absolute_url }}#comments-section">{{ comment_count }} comentário(s)</a>
+                {% else %}
+                    <a href="{{ post.get_absolute_url }}#comments-form">Deixe um comentário</a>
+                {% endif %}
             </p>
             <div class="excerpt" itemprop="description">{{ post.excerpt|escape|linebreaks }}</div>
             <h4><a href="{{ post.get_absolute_url }}">Continue lendo »</a></h4>
