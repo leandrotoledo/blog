@@ -9,7 +9,7 @@
         <span itemprop="name">{{ post.title }}</span>
     </h1>
     <p class="published-date">
-        Escrito por <span itemprop="author">Leandro Toledo</span> em <time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time>
+        Escrito por <a href="{% url about %}"><span itemprop="author">Leandro Toledo</span></a> em <time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time>
     </p>
     <p class="comments">
         <a href="#comments-form">Deixe um comentário</a>

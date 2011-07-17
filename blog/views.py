@@ -64,6 +64,11 @@ def contact(request):
     return render(request, 'contact.html', {'categories':    categories,
                                             'user':          request.user})
 
+def search(request):
+    categories = Category.objects.all()
+    return render(request, 'search.html', {'categories':    categories,
+                                            'user':          request.user})
+
 
 def paginate(request, posts, posts_per_page=3):
     paginator = Paginator(posts, posts_per_page)

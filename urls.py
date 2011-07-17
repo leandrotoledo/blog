@@ -45,4 +45,8 @@ urlpatterns = patterns('',
     url(r'^contact/$',
         'public_html.blog.views.contact',
         name='contact'),
+
+    url(r'^search/$',
+        'public_html.blog.views.search',
+        name='search'),
 )
