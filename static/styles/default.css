@@ -191,6 +191,10 @@ body {
     list-style-type: none;
 }
 
+#content #main #menu nav ul li {
+    color: #888888;
+}
+
 #content #main #menu nav ul li a {
     color: #444444;
     padding-left: 12px;

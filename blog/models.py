@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import permalink
+from django.template.defaultfilters import slugify
 
 from django.contrib import admin
 from django.utils.translation import gettext as _
@@ -41,12 +42,16 @@ class Post(models.Model):
     def __unicode__(self):
         return self.title
 
+    def save(self):
+        self.slug = slugify(self.title)
+        super(Post, self).save()
+
     @permalink
     def get_absolute_url(self):
         y = self.published_date.strftime("%Y")
         m = self.published_date.strftime("%m")
         d = self.published_date.strftime("%d")
-        return ('public_html.blog.views.post', None, {'year': y, 'month': m, 'day': d, 'slug': self.slug})
+        return ('post', None, {'year': y, 'month': m, 'day': d, 'slug': self.slug})
 
 
 class Category(models.Model):
@@ -63,9 +68,13 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
 
+    def save(self):
+        self.slug = slugify(self.title)
+        super(Category, self).save()
+
     @permalink
     def get_absolute_url(self):
-        return ('public_html.blog.views.category', None, {'slug': self.slug})
+        return ('category', None, {'slug': self.slug})
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -77,9 +86,6 @@ class PostAdmin(admin.ModelAdmin):
 
     fieldsets = [
         (None, {'fields':   ['title'],
-                'classes':  ['wide']}),
-
-        (None, {'fields':   ['slug'],
                 'classes':  ['wide']}),
 
         (None, {'fields':   ['content'],

@@ -18,7 +18,7 @@
     <section class="content" itemprop="articleBody">{{ post.content|escape|linebreaks }}</section>
     <p class="keywords">
         Categoria(s):
-        {% for category in categories %}
+        {% for category in post.category.all %}
             <a href="{{ category.get_absolute_url }}"><span itemprop="keywords">{{ category }}</span></a>
         {% empty %}
             Nenhuma categoria
