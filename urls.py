@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic.simple import direct_to_template
 
@@ -23,7 +25,7 @@ urlpatterns = patterns('',
     url(r'^$',
         'django.views.generic.list_detail.object_list',
         {
-            'queryset':             Post.objects.all(),
+            'queryset':             Post.objects.all().order_by('-published_date'),
             'paginate_by':          3,
             'template_name':        'list.html',
         },
@@ -33,37 +35,46 @@ urlpatterns = patterns('',
         'public_html.blog.views.category',
         name='category'),
 
-    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$',
+    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
         'public_html.blog.views.post',
         name='post'),
 
-    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$',
+    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/$',
         'django.views.generic.date_based.archive_day',
         {
-            'queryset':         Post.objects.all(),
+            'queryset':         Post.objects.all().order_by('-published_date'),
             'date_field':       'published_date',
             'month_format':     '%m',
-            'template_name':    'list.html'
+            'template_name':    'list.html',
+            'extra_context':    {
+                'description':      'Histórico do dia:'
+            }
         },
         name='archive_day'),
 
-    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/$',
+    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/$',
         'django.views.generic.date_based.archive_month',
         {
-            'queryset':         Post.objects.all(),
+            'queryset':         Post.objects.all().order_by('-published_date'),
             'date_field':       'published_date',
             'month_format':     '%m',
-            'template_name':    'list.html'
+            'template_name':    'list.html',
+            'extra_context':    {
+                'description':      'Histórico do mês:'
+            }
         },
         name='archive_month'),
 
     url(r'^(?P<year>\d{4})/$',
         'django.views.generic.date_based.archive_year',
         {
-            'queryset':         Post.objects.all(),
+            'queryset':         Post.objects.all().order_by('-published_date'),
             'date_field':       'published_date',
             'template_name':    'list.html',
             'make_object_list': True,
+            'extra_context':    {
+                'description':      'Histórico do ano: '
+            }
         },
         name='archive_year'),
 

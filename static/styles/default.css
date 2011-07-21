@@ -61,14 +61,20 @@ body {
     padding: 0px 10px;
 }
 
-#content #main #articles #post h1:first-child {
+#content #main #articles #description {
+    color: #888888;
+    margin: 0;
+    padding: 0;
+}
+
+#content #main #articles .post h1:first-child {
     color: #000000;
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
 }
 
-#content #main #articles #post h1:first-child a {
+#content #main #articles .post h1:first-child a {
     color: #000000;
     text-decoration: none;
 }
@@ -99,13 +105,18 @@ body {
     background: url('/static/images/icons.gif') no-repeat -20px -240px;
 }
 
-#content #main #articles #post .excerpt, #content #main #articles #post .content {
+#content #main #articles .post .excerpt, #content #main #articles .post .content {
     clear: both;
     text-align: justify;
     font-size: 15px;
 }
 
-#content #main #articles #post h4 {
+#content #main #articles .post {
+    border-bottom: 1px solid #EEEEEE;
+    margin-bottom: 20px;
+}
+
+#content #main #articles .post h4 {
     display: block;
     padding-left: 20px;
     font-weight: bold;
@@ -113,7 +124,7 @@ body {
     background: url('/static/images/icons.gif') no-repeat left -22px;
 }
 
-#content #main #articles #post h4 a {
+#content #main #articles .post h4 a {
     text-decoration: none;
 }
 
@@ -134,11 +145,6 @@ body {
     padding: 10px;
     margin-bottom: 20px;
     clear: both;
-}
-
-#content #main #articles #responses {
-    border-top: 1px solid #EEEEEE;
-    padding-top: 15px;
 }
 
 #content #main #articles .comments-anchor {

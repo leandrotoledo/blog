@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 {% load comments %}
 
-{% block title %}{{ description|add:' - '|default_if_none:'' }}Blog do Leandro Toledo{% endblock %}
+{% block title %}{% if description %}{{description}} {{ day|date:'d/m/Y' }}{{ month|date:'m/Y' }}{{ year }} - {% endif %}{% endblock %}
 
 {% block articles %}
     {% if description %}
-        <h3>{{ description }}</h3>
+        <h3 id="description">{{ description }} {{ day|date:'d/m/Y' }}{{ month|date:'m/Y' }}{{ year }}</h3>
+        <hr />
     {% endif %}
 
     {% for post in object_list %}
-        <article id="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
             <h1 class="title">
                 <a href="{{ post.get_absolute_url }}"><span itemprop="name">{{ post.title }}</span></a>
             </h1>
             <p class="published-date">
-                Escrito por <a href="{% url about %}"><span itemprop="author">Leandro Toledo</span></a> em <time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time>
+                Escrito por <a href="{% url about %}"><span itemprop="author">Leandro Toledo</span></a> em <a href="{% url archive_day year=post.published_date.year, month=post.published_date.month, day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a>
             </p>
             <p class="comments">
                 {% get_comment_count for post as comment_count %}
@@ -35,7 +36,6 @@
                 {% endfor %}
             </p>
         </article>
-        <br />
     {% empty %}
         Nada encontrado.
     {% endfor %}

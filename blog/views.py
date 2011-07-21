@@ -1,9 +1,9 @@
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import list_detail
+
 from public_html.blog.models import *
 
 
@@ -21,7 +21,8 @@ def category(request, slug):
         request,
         queryset = Post.objects.filter(category=category).order_by('-published_date'),
         paginate_by = 3,
-        template_name = 'list.html'
+        template_name = 'list.html',
+        extra_context = { 'description': 'Categoria: %s' % category  }
     )
 
     return response

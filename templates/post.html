@@ -4,12 +4,12 @@
 {% block title %}{{ post.title }} - Blog do Leandro Toledo{% endblock %}
 
 {% block articles %}
-<article id="post" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title">
         <span itemprop="name">{{ post.title }}</span>
     </h1>
     <p class="published-date">
-        Escrito por <a href="{% url about %}"><span itemprop="author">Leandro Toledo</span></a> em <time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time>
+        Escrito por <a href="{% url about %}"><span itemprop="author">Leandro Toledo</span></a> em <a href="{% url archive_day year=post.published_date.year, month=post.published_date.month, day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a>
     </p>
     <p class="comments">
         <a href="#comments-form">Deixe um comentário</a>
@@ -26,11 +26,9 @@
     </p>
 </article>
 
-<br />
-
 {% get_comment_count for post as comment_count %}
 {% if comment_count > 0 %}
-    <h2><a name="comments-section" class="comments-anchor">{{ comment_count }} resposta(s) para este artigo</a></h2>
+    <h2><a id="comments-section" class="comments-anchor">{{ comment_count }} resposta(s) para este artigo</a></h2>
 
     <dl id="comments">
     {% get_comment_list for post as comment_list %}
@@ -52,7 +50,7 @@
 
 <article id="responses">
     {% get_comment_form for post as form %}
-    <h2><a name="comments-form" class="comments-anchor">Deixe um comentário</a></h2>
+    <h2><a id="comments-form" class="comments-anchor">Deixe um comentário</a></h2>
 
     <form action="{% comment_form_target %}" method="post">
         {% csrf_token %}

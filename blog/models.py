@@ -97,7 +97,7 @@ class PostAdmin(admin.ModelAdmin):
         (_('excerpt'), {'fields':   ['excerpt'],
                         'classes':  ['collapse', 'wide']}),
 
-        (_('category'), {'fields':   ['category'],
+        (_('category'), {'fields':  ['category'],
                         'classes':  ['collapse', 'wide']})
     ]
 
