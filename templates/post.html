@@ -3,6 +3,9 @@
 
 {% block title %}{{ post.title }} - Blog do Leandro Toledo{% endblock %}
 
+{% block description %}{{ post.excerpt }}{% endblock %}
+{% block keywords %}{% for category in post.category.all %}{{ category }},{% endfor %}{% endblock %}
+
 {% block articles %}
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title">

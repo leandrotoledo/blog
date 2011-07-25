@@ -102,7 +102,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
-    'public_html.blog.context_processors.categories'
+    'public_html.blog.context_processors.categories',
+    'public_html.blog.context_processors.archives',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -134,6 +135,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.comments',
+    'django.contrib.sitemaps',
     'public_html.blog',
 )
 

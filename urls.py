@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-
 from django.conf.urls.defaults import patterns, include, url
-from django.views.generic.simple import direct_to_template
+from django.views.generic import ListView, TemplateView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -9,16 +8,10 @@ admin.autodiscover()
 
 from public_html.blog.models import *
 
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'public_html.views.home', name='home'),
-    # url(r'^public_html/', include('public_html.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
     (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^comments/', include('django.contrib.comments.urls')),
 
@@ -78,18 +71,7 @@ urlpatterns = patterns('',
         },
         name='archive_year'),
 
-    url(r'^about/$',
-        direct_to_template,
-        {'template': 'about.html'},
-        name='about'),
+    url(r'^about/', TemplateView.as_view(template_name='about.html'), name='about'),
 
-    url(r'^contact/$',
-        direct_to_template,
-        {'template': 'contact.html'},
-        name='contact'),
-
-    url(r'^search/$',
-        direct_to_template,
-        {'template': 'search.html'},
-        name='search'),
+    url(r'^contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
 )

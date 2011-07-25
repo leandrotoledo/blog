@@ -22,7 +22,7 @@ def category(request, slug):
         queryset = Post.objects.filter(category=category).order_by('-published_date'),
         paginate_by = 3,
         template_name = 'list.html',
-        extra_context = { 'description': 'Categoria: %s' % category  }
+        extra_context = { 'description': 'Arquivo da categoria: %s' % category  }
     )
 
     return response

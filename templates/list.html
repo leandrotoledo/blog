@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load comments %}
 
+{% block description %}O Blog do Leandro Toledo é um conjunto de artigos sobre GNU/Linux, Tecnologias, Redes de Computadores, Crônicas, CentOS, Ubuntu, Nagios e muito mais.{% endblock %}
+{% block keywords %}{% endblock %}
+
 {% block title %}{% if description %}{{description}} {{ day|date:'d/m/Y' }}{{ month|date:'m/Y' }}{{ year }} - {% endif %}{% endblock %}
 
 {% block articles %}
@@ -41,18 +44,18 @@
     {% endfor %}
 
     {% if is_paginated %}
-        <div class="pagination">
+        <div id="pagination">
             <span class="step-links">
-                {% if page_obj.has_previous %}
-                    <a href= "?page={{ page_obj.previous_page_number }}">newer entries &lt;&lt; </a>
-                {% endif %}
-
                 <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
                 </span>
 
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}"> &gt;&gt; older entries</a>
+                    <a class="next" href="?page={{ page_obj.next_page_number }}">← Posts mais antigos</a>
+                {% endif %}
+
+                {% if page_obj.has_previous %}
+                    <a class="previous" href= "?page={{ page_obj.previous_page_number }}">Posts mais recentes →</a>
                 {% endif %}
             </span>
         </div>

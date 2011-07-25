@@ -3,6 +3,9 @@
 <html lang="pt-br" xml:lang="pt-br">
     <head>
         <title>{% block title %}{% endblock %}Blog do Leandro Toledo</title>
+        <meta name="description" content="{% block description %}{% endblock %}" />
+        <meta name="keywords" content="{% block keywords %}{% endblock %}gnu,linux,leandro toledo,tecnologias,redes de computadores,crônicas,artigos,centos,ubuntu,nagios" />
+        <meta name="author" content="Leandro Toledo" />
         <meta charset="utf-8" />
         <link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" />
         <link rel="stylesheet" href="{{ STATIC_URL }}styles/blueprint/screen.css" type="text/css" media="screen, projection">
@@ -48,9 +51,15 @@
 
                     <h2>Arquivos</h2>
                     <nav>
-                        <ul>
-                            <li><a href="">Link</a></li>
-                        </ul>
+                        {% if archives %}
+                            <ul>
+                            {% for archive in archives %}
+                                <li><a href="{% url archive_month archive.month|date:'Y' archive.month|date:'m' %}">{{ archive.month|date:'m/Y' }}</a> ({{ archive.dcount }})</li>
+                            {% empty %}
+                                <li>Nada encontrado.</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
                     </nav>
 
                     <br />

@@ -170,6 +170,34 @@ body {
     font-weight: normal;
 }
 
+#content #main #articles #pagination {
+    display: block;
+}
+
+#content #main #articles #pagination a {
+    color: #0066CC;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#content #main #articles #pagination a:hover {
+    color: #0099FF;
+}
+
+#content #main #articles #pagination .next {
+    float: left;
+}
+
+#content #main #articles #pagination .previous {
+    float: right;
+}
+
+#content #main #articles #pagination .current {
+    color: #888888;
+    display: block;
+    text-align: center;
+}
+
 #content #main #menu {
     width: 200px;
     float: right;
