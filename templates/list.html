@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load comments %}
+{% load url from future %}
 
 {% block description %}O Blog do Leandro Toledo é um conjunto de artigos sobre GNU/Linux, Tecnologias, Redes de Computadores, Crônicas, CentOS, Ubuntu, Nagios e muito mais.{% endblock %}
 {% block keywords %}{% endblock %}
@@ -18,7 +19,7 @@
                 <a href="{{ post.get_absolute_url }}"><span itemprop="name">{{ post.title }}</span></a>
             </h1>
             <p class="published-date">
-                Escrito por <a href="{% url about %}"><span itemprop="author">Leandro Toledo</span></a> em <a href="{% url archive_day year=post.published_date.year, month=post.published_date.month, day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a>
+                Escrito por <a href="{% url 'about' %}"><span itemprop="author">Leandro Toledo</span></a> em <a href="{% url 'archive_day' year=post.published_date.year month=post.published_date.month day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a>
             </p>
             <p class="comments">
                 {% get_comment_count for post as comment_count %}

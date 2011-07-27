@@ -105,6 +105,10 @@ body {
     background: url('/static/images/icons.gif') no-repeat -20px -240px;
 }
 
+.keywords a span:hover {
+    color: #0066CC;
+}
+
 #content #main #articles .post .excerpt, #content #main #articles .post .content {
     clear: both;
     text-align: justify;

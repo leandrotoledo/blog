@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load url from future %}
+
 <!DOCTYPE HTML>
 <html lang="pt-br" xml:lang="pt-br">
     <head>
@@ -25,9 +27,9 @@
             </header>
 
             <nav id="top-menu">
-                <a href="{% url index %}">Home</a>
-                <a href="{% url about %}">Sobre</a>
-                <a href="{% url contact %}">Contato</a>
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'about' %}">Sobre</a>
+                <a href="{% url 'contact' %}">Contato</a>
                 <a href="">Feed (RSS)</a>
             </nav>
 
@@ -41,20 +43,20 @@
                     <h2>Administração</h2>
                     <nav>
                         <ul>
-                            <li><a href="{% url admin:index %}">Home</a></li>
-                            <li><a href="{% url admin:blog_post_add %}">Novo artigo</a></li>
+                            <li><a href="{% url 'admin:index' %}">Home</a></li>
+                            <li><a href="{% url 'admin:blog_post_add' %}">Novo artigo</a></li>
                         </ul>
                     </nav>
 
                     <br />
                     {% endif %}
 
-                    <h2>Arquivos</h2>
+                    <h2>Categorias</h2>
                     <nav>
-                        {% if archives %}
+                        {% if categories %}
                             <ul>
-                            {% for archive in archives %}
-                                <li><a href="{% url archive_month archive.month|date:'Y' archive.month|date:'m' %}">{{ archive.month|date:'m/Y' }}</a> ({{ archive.dcount }})</li>
+                            {% for category in categories %}
+                                <li><a href="{{ category.get_absolute_url }}">{{ category }}</a> ({{ category.post__count }})</li>
                             {% empty %}
                                 <li>Nada encontrado.</li>
                             {% endfor %}
@@ -64,12 +66,12 @@
 
                     <br />
 
-                    <h2>Categorias</h2>
+                    <h2>Arquivos</h2>
                     <nav>
-                        {% if categories %}
+                        {% if archives %}
                             <ul>
-                            {% for category in categories %}
-                                <li><a href="{{ category.get_absolute_url }}">{{ category }}</a> ({{ category.post__count }})</li>
+                            {% for archive in archives %}
+                                <li><a href="{% url 'archive_month' archive|date:'Y' archive|date:'m' %}">{{ archive|date:'m/Y' }}</a></li>
                             {% empty %}
                                 <li>Nada encontrado.</li>
                             {% endfor %}

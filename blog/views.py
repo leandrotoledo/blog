@@ -1,28 +1,12 @@
-from django.shortcuts import render, get_object_or_404
-from django.template import RequestContext
-from django.utils.translation import gettext as _
-from django.views.decorators.csrf import csrf_protect
-from django.views.generic import list_detail
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView
 
-from public_html.blog.models import *
+from public_html.blog.models import Post, Category
 
+class PostCategoryListView(ListView):
+    template_name = 'list.html'
+    paginate_by = 3
 
-@csrf_protect
-def post(request, year, month, day, slug):
-    post = get_object_or_404(Post, slug=slug)
-    return render(request, 'post.html', {'post': post,
-                                         'context_instance': RequestContext(request)})
-
-
-def category(request, slug):
-    category = get_object_or_404(Category, slug=slug)
-
-    response = list_detail.object_list(
-        request,
-        queryset = Post.objects.filter(category=category).order_by('-published_date'),
-        paginate_by = 3,
-        template_name = 'list.html',
-        extra_context = { 'description': 'Arquivo da categoria: %s' % category  }
-    )
-
-    return response
+    def get_queryset(self):
+        category = get_object_or_404(Category, slug__iexact=self.args[0])
+        return Post.objects.filter(category=category)
