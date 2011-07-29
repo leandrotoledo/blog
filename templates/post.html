@@ -8,65 +8,65 @@
 {% block keywords %}{% for category in post.category.all %}{{ category }},{% endfor %}{% endblock %}
 
 {% block articles %}
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    <h1 class="title">
-        <span itemprop="name">{{ post.title }}</span>
-    </h1>
-    <p class="published-date">
-        Escrito por <a href="{% url 'about' %}"><span itemprop="author">Leandro Toledo</span></a> em <a href="{% url 'archive_day' year=post.published_date.year month=post.published_date.month day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a>
-    </p>
-    <p class="comments">
-        <a href="#comments-form">Deixe um comentário</a>
-    </p>
-    <br />
-    <section class="content" itemprop="articleBody">{{ post.content|escape|linebreaks }}</section>
-    <p class="keywords">
-        Categoria(s):
-        {% for category in post.category.all %}
-            <a href="{{ category.get_absolute_url }}"><span itemprop="keywords">{{ category }}</span></a>
-        {% empty %}
-            Nenhuma categoria
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <h1 class="title">
+            <span itemprop="name">{{ post.title }}</span>
+        </h1>
+        <p class="published-date">
+            Escrito por <a href="{% url 'user' post.user %}"><span itemprop="author">{{ post.user }}</span></a> em <a href="{% url 'archive_day' year=post.published_date.year month=post.published_date.month day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a>
+        </p>
+        <p class="comments">
+            <a href="#comments-form">Deixe um comentário</a>
+        </p>
+        <br />
+        <section class="content" itemprop="articleBody">{{ post.content|escape|linebreaks }}</section>
+        <p class="keywords">
+            Categoria(s):
+            {% for category in post.category.all %}
+                <a href="{{ category.get_absolute_url }}"><span itemprop="keywords">{{ category }}</span></a>
+            {% empty %}
+                Nenhuma categoria
+            {% endfor %}
+        </p>
+    </article>
+
+    {% get_comment_count for post as comment_count %}
+    {% if comment_count > 0 %}
+        <h2><a id="comments-section" class="comments-anchor">{{ comment_count }} resposta(s) para este artigo</a></h2>
+
+        <dl id="comments">
+        {% get_comment_list for post as comment_list %}
+        {% for comment in comment_list %}
+            <dt id="c{{ comment.pk }}">
+                {% if comment.user_url %}
+                <strong><a href="{{ comment.user_url }}" target="_blank">{{ comment.user_name }}</a></strong> <em>disse:</em><br />
+                {% else %}
+                <strong>{{ comment.user_name }}</strong> <em>disse:</em><br />
+                {% endif %}
+                <span class="published-date">em <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:'d/m/Y - h:i A' }}</time></span>
+            </dt>
+            <dd>
+                {{ comment.comment }}
+            </dd>
         {% endfor %}
-    </p>
-</article>
+        </dl>
+    {% endif %}
 
-{% get_comment_count for post as comment_count %}
-{% if comment_count > 0 %}
-    <h2><a id="comments-section" class="comments-anchor">{{ comment_count }} resposta(s) para este artigo</a></h2>
+    <article id="responses">
+        {% get_comment_form for post as form %}
+        <h2><a id="comments-form" class="comments-anchor">Deixe um comentário</a></h2>
 
-    <dl id="comments">
-    {% get_comment_list for post as comment_list %}
-    {% for comment in comment_list %}
-        <dt id="c{{ comment.pk }}">
-            {% if comment.user_url %}
-            <strong><a href="{{ comment.user_url }}" target="_blank">{{ comment.user_name }}</a></strong> <em>disse:</em><br />
-            {% else %}
-            <strong>{{ comment.user_name }}</strong> <em>disse:</em><br />
-            {% endif %}
-            <span class="published-date">em <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:'d/m/Y - h:i A' }}</time></span>
-        </dt>
-        <dd>
-            {{ comment.comment }}
-        </dd>
-    {% endfor %}
-    </dl>
-{% endif %}
-
-<article id="responses">
-    {% get_comment_form for post as form %}
-    <h2><a id="comments-form" class="comments-anchor">Deixe um comentário</a></h2>
-
-    <form action="{% comment_form_target %}" method="post">
-        {% csrf_token %}
-        <table>
-        {{ form }}
-        <tr>
-            <th><input type="hidden" name="next" value="{{ post.get_absolute_url }}" /></th>
-            <td colspan="1">
-                <input type="submit" name="submit" value="Publicar">
-            </td>
-        </tr>
-        </table>
-    </form>
-</article>
+        <form action="{% comment_form_target %}" method="post">
+            {% csrf_token %}
+            <table>
+            {{ form }}
+            <tr>
+                <th><input type="hidden" name="next" value="{{ post.get_absolute_url }}" /></th>
+                <td colspan="1">
+                    <input type="submit" name="submit" value="Publicar">
+                </td>
+            </tr>
+            </table>
+        </form>
+    </article>
 {% endblock %}

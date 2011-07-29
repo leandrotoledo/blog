@@ -35,6 +35,15 @@
 
             <div id="main">
                 <section id="articles">
+                    {% if messages %}
+                        <p class="messages">
+                            {% autoescape off %}
+                            {% for message in messages %}
+                                <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                            {% endfor %}
+                            {% endautoescape %}
+                        </p>
+                    {% endif %}
                     {% block articles %}{% endblock %}
                 </section>
 
@@ -98,7 +107,7 @@
             <footer>
                 <div itemscope itemtype="http://n.whatwg.org/work">
                     <a id="creative-commons-license" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width: 0;" src="{{ STATIC_URL }}images/buttons/creativecommons_by-nc-sa.png"></a>
-                    O <a itemprop="work" href="http://leandrotoledo.blog.br/"><span>Blog do Leandro Toledo</span></a> por <a itemprop="author" href="http://leandrotoledo.blog.br/author/"><span>Leandro Toledo de Souza</span></a> está sob a licença <a itemprop="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><abbr title="Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License"><span>CC-BY-NC-SA</span></abbr></a>.
+                    O <a itemprop="work" href="http://leandrotoledo.blog.br/"><span>Blog do Leandro Toledo</span></a> por <a itemprop="author" href="http://leandrotoledo.blog.br/about/"><span>Leandro Toledo de Souza</span></a> está sob a licença <a itemprop="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><abbr title="Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License"><span>CC-BY-NC-SA</span></abbr></a>.
                 </div>
             </footer>
         </div>

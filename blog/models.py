@@ -5,6 +5,8 @@ from django.template.defaultfilters import slugify
 from django.contrib import admin
 from django.utils.translation import gettext as _
 
+from django.contrib.auth.models import User
+
 class Post(models.Model):
     title = models.CharField(
         _('title'),
@@ -37,12 +39,14 @@ class Post(models.Model):
     published_date = models.DateTimeField(
         _('date-published'))
 
+    user = models.ForeignKey(User)
+
     category = models.ManyToManyField('blog.Category')
 
     def __unicode__(self):
         return self.title
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Post, self).save()
 
@@ -82,7 +86,7 @@ class Category(models.Model):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published_date')
+    list_display = ('title', 'published_date', 'user')
 
     search_fields = ['title']
 
@@ -104,6 +108,11 @@ class PostAdmin(admin.ModelAdmin):
         (_('category'), {'fields':  ['category'],
                         'classes':  ['collapse', 'wide']})
     ]
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category)
