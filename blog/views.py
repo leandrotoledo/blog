@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic.dates import DayArchiveView, MonthArchiveView, YearArchiveView
 from django.views.generic import ListView, DetailView
+from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.contrib.auth.models import User
 from public_html.blog.models import *
@@ -39,7 +40,7 @@ class PostCategoryListView(ListView):
         return Post.objects.filter(category = category)
 
     def render_to_response(self, context):
-        messages.info(self.request, 'Category: <strong>%s</strong>' % self.kwargs['category'])
+        messages.info(self.request, _('Category: <strong>%s</strong>' % self.kwargs['category']))
         return super(PostCategoryListView, self).render_to_response(context)
 
 
@@ -56,7 +57,7 @@ class PostUserListView(ListView):
         return Post.objects.filter(user = user)
 
     def render_to_response(self, context):
-        messages.info(self.request, 'User: <strong>%s</strong>' % self.kwargs['user'])
+        messages.info(self.request, _('User: <strong>%s</strong>' % self.kwargs['user']))
         return super(PostUserListView, self).render_to_response(context)
 
 
@@ -71,7 +72,7 @@ class PostDayArchiveView(DayArchiveView):
     model = Post
 
     def render_to_response(self, context):
-        messages.info(self.request, 'Day: <strong>%s/%s/%s</strong>' % (self.kwargs['day'], self.kwargs['month'], self.kwargs['year']))
+        messages.info(self.request, _('Day: <strong>%s/%s/%s</strong>' % (self.kwargs['day'], self.kwargs['month'], self.kwargs['year'])))
         return super(PostDayArchiveView, self).render_to_response(context)
 
 
@@ -86,7 +87,7 @@ class PostMonthArchiveView(MonthArchiveView):
     model = Post
 
     def render_to_response(self, context):
-        messages.info(self.request, 'Month: <strong>%s/%s</strong>' % (self.kwargs['month'], self.kwargs['year']))
+        messages.info(self.request, _('Month: <strong>%s/%s</strong>' % (self.kwargs['month'], self.kwargs['year'])))
         return super(PostMonthArchiveView, self).render_to_response(context)
 
 
@@ -101,5 +102,5 @@ class PostYearArchiveView(YearArchiveView):
     model = Post
 
     def render_to_response(self, context):
-        messages.info(self.request, 'Year: <strong>%s</strong>' % self.kwargs['year'])
+        messages.info(self.request, _('Year: <strong>%s</strong>' % self.kwargs['year']))
         return super(PostYearArchiveView, self).render_to_response(context)
