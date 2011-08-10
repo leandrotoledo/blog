@@ -1,10 +1,10 @@
-* {
-    font-family: Arial, 'DejaVu Sans', 'Liberation Sans', sans-serif;
+body, * {
+    font-family: 'Lucida Grande', Verdana, Lucida, Helvetica, Arial, sans-serif;
 }
 
 body {
     color: #333333;
-    background: #F1F1F1;
+    background: #E6E6E6;
     margin-top: 10px;
 }
 
@@ -36,7 +36,7 @@ body {
     text-align: right;
 }
 #header figure p {
-    font-size: 16px;
+    font-size: 14px;
     font-style: italic;
     margin: 0;
     padding-top: 60px;
@@ -65,6 +65,7 @@ body {
 #main {
     border-radius: 0;
 }
+
 /* * Content section
  * Articles
  * */
@@ -123,6 +124,7 @@ body {
     padding-left: 20px;
     text-decoration: none;
 }
+
 /* * Content section
  * Menu
  * */
