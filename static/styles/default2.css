@@ -1,0 +1,199 @@
+* {
+    font-family: Arial, 'DejaVu Sans', 'Liberation Sans', sans-serif;
+}
+
+body {
+    color: #333333;
+    background: #F1F1F1;
+    margin-top: 10px;
+}
+
+.container {
+    background-color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    border-radius: 15px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 940px;
+}
+
+/* Header section */
+#header {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-bottom: 0;
+}
+#header h1:first-child {
+    font-weight: bold;
+}
+#header figure {
+    background: url('/static/images/gnu_left.png') no-repeat 728px -90px;
+    border-top: 4px solid black;
+    height: 140px;
+    padding-top: 10px;
+    padding-right: 150px;
+    text-align: right;
+}
+#header figure p {
+    font-size: 16px;
+    font-style: italic;
+    margin: 0;
+    padding-top: 60px;
+}
+#header figcaption cite {
+    font-size: 15px;
+    font-weight: bold;
+}
+#header #top-menu {
+    background: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+#header #top-menu ul li {
+    float: left;
+    list-style-type: none;
+    margin: 0 10px;
+}
+#header #top-menu ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* Content section */
+#main {
+    border-radius: 0;
+}
+/* * Content section
+ * Articles
+ * */
+#main #articles {
+    float: left;
+    width: 700px;
+}
+#main #articles .post {
+    border-bottom: 1px solid #EEEEEE;
+    margin: 0 0 5px 0;
+    padding: 0 0 20px 20px;
+}
+#main #articles .post ul {
+    margin: 0;
+    padding: 0;
+}
+#main #articles .post ul li {
+    color: #888888;
+    list-style-type: none;
+    padding-left: 20px;
+}
+#main #articles .post ul li a {
+    color: #888888;
+}
+#main #articles .post ul li a:hover {
+    color: #0066CC;
+}
+#main #articles .post header h1 a {
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+#main #articles .post .published-date {
+    background: url('/static/images/icons.gif') no-repeat left -40px;
+    float: left;
+}
+#main #articles .post .comments {
+    background: url('/static/images/icons.gif') no-repeat left -100px;
+    float: right;
+}
+#main #articles .post .keywords {
+    background: url('/static/images/icons.gif') no-repeat -20px -240px;
+}
+#main #articles .post .content {
+    clear: both;
+    font-size: 14px;
+    margin: 0;
+    padding-top: 24px;
+    text-align: justify;
+}
+#main #articles .post .content .more-link {
+    background: url('/static/images/icons.gif') no-repeat left -22px;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 20px;
+    text-decoration: none;
+}
+/* * Content section
+ * Menu
+ * */
+#main #menu {
+    border-left: 1px solid #EEEEEE;
+    float: right;
+    padding-left: 15px;
+    width: 200px;
+}
+#main #menu nav h1 {
+    font-size: 14px;
+    font-weight: bold;
+}
+#main #menu nav ul {
+    margin: 10px 0;
+    padding: 0;
+}
+#main #menu nav ul li {
+    color: #888888;
+    list-style-type: none;
+    margin-left: 20px;
+}
+#main #menu nav ul li a {
+    background: url('/static/images/icons.gif') no-repeat 0px -282px;
+    color: #444444;
+    padding-left: 12px;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+#main #menu nav ul li a:hover {
+    background: url('/static/images/icons.gif') no-repeat -10px -262px;
+    color: #888888;
+}
+#main #menu .powered-by-django {
+    display: block;
+    border: 0px;
+    text-align: center;
+    margin-top: 100%;
+}
+
+/* Footer section */
+#footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-top: 0;
+}
+#footer div:first-child {
+    border-top: 4px solid black;
+    font-size: 10px;
+    padding-top: 8px;
+}
+#footer #creative-commons-license img {
+    float: left;
+    padding-right: 5px;
+}
+
+/* Badges section */
+#badges {
+    width: 420px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+#badges ul {
+    margin: 0px;
+    padding: 0px;
+}
+#badges ul li {
+    float: left;
+    list-style-type: none;
+    margin-left: 4px;
+}
+#content#badges ul li:first-child {
+    margin-left: 0px;
+}
