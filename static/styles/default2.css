@@ -1,5 +1,5 @@
 body, * {
-    font-family: 'Lucida Grande', Verdana, Lucida, Helvetica, Arial, sans-serif;
+    font-family: Verdana, Arial, sans-serif;
 }
 
 body {
@@ -40,7 +40,8 @@ body {
     text-align: right;
 }
 #header figure p {
-    font-size: 12px;
+    font-family: sans-serif;
+    font-size: 14px;
     font-style: italic;
     margin: 0;
     padding-top: 70px;
