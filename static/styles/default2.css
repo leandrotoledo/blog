@@ -37,13 +37,13 @@ body {
     text-align: right;
 }
 #header figure p {
-    font-size: 14px;
+    font-size: 12px;
     font-style: italic;
     margin: 0;
-    padding-top: 60px;
+    padding-top: 70px;
 }
 #header figcaption cite {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
 }
 #header #top-menu {
