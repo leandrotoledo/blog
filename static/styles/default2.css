@@ -9,6 +9,7 @@ body {
 }
 
 .container {
+    -moz-border-radius: 15px;
     background-color: #FFFFFF;
     border: 1px solid #FFFFFF;
     border-radius: 15px;
@@ -19,6 +20,8 @@ body {
 
 /* Header section */
 #header {
+    -moz-border-bottom-left-radius: 0;
+    -moz-border-bottom-right-radius: 0;
     border-bottom: 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -65,6 +68,7 @@ body {
 
 /* Content section */
 #main {
+    -moz-border-radius: 0;
     border-radius: 0;
 }
 
@@ -169,6 +173,8 @@ body {
 
 /* Footer section */
 #footer {
+    -moz-border-top-left-radius: 0;
+    -moz-border-top-right-radius: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     padding-top: 0;
