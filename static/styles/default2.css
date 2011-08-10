@@ -25,6 +25,7 @@ body {
     padding-bottom: 0;
 }
 #header h1:first-child {
+    font-size: 28px;
     font-weight: bold;
 }
 #header figure {
@@ -58,6 +59,7 @@ body {
 }
 #header #top-menu ul li a {
     color: #FFFFFF;
+    font-size: 14px;
     text-decoration: none;
 }
 
@@ -96,7 +98,7 @@ body {
 #main #articles .post header h1 a {
     color: #000000;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
 }
 #main #articles .post .published-date {
@@ -135,7 +137,7 @@ body {
     width: 200px;
 }
 #main #menu nav h1 {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
 }
 #main #menu nav ul {
