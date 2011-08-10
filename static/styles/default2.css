@@ -14,7 +14,7 @@ body {
     border: 1px solid #FFFFFF;
     border-radius: 15px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     width: 940px;
 }
 
@@ -40,7 +40,7 @@ body {
     text-align: right;
 }
 #header figure p {
-    font-family: sans-serif;
+    font-family: Arial;
     font-size: 14px;
     font-style: italic;
     margin: 0;
