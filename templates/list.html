@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
+
 {% load comments %}
 {% load url from future %}
 
 {% block description %}O Blog do Leandro Toledo é um conjunto de artigos sobre GNU/Linux, Tecnologias, Redes de Computadores, Crônicas, CentOS, Ubuntu, Nagios e muito mais.{% endblock %}
 {% block keywords %}{% endblock %}
-
 {% block title %}{% if description %}{{description}} {{ day|date:'d/m/Y' }}{{ month|date:'m/Y' }}{{ year }} - {% endif %}{% endblock %}
 
 {% block articles %}
@@ -15,50 +15,40 @@
 
     {% for post in object_list %}
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-            <h1 class="title">
-                <a href="{{ post.get_absolute_url }}"><span itemprop="name">{{ post.title }}</span></a>
-            </h1>
-            <p class="published-date">
-                Escrito por <a href="{% url 'user' post.user %}"><span itemprop="author">{{ post.user }}</span></a> em <a href="{% url 'archive_day' year=post.published_date.year month=post.published_date.month day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a>
-            </p>
-            <p class="comments">
-                {% get_comment_count for post as comment_count %}
-                {% if comment_count > 0 %}
-                    <a href="{{ post.get_absolute_url }}#comments-section">{{ comment_count }} comentário(s)</a>
-                {% else %}
-                    <a href="{{ post.get_absolute_url }}#comments-form">Deixe um comentário</a>
-                {% endif %}
-            </p>
-            <div class="excerpt" itemprop="description">{{ post.excerpt|escape|linebreaks }}</div>
-            <h4><a href="{{ post.get_absolute_url }}">Continue lendo »</a></h4>
-            <p class="keywords">
-                Categoria(s):
-                {% for category in post.category.all %}
-                    <a href="{{ category.get_absolute_url }}"><span itemprop="keywords">{{ category }}</span></a>
-                {% empty %}
-                    Nenhuma categoria
-                {% endfor %}
-            </p>
+            <header>
+                <h1 class="title">
+                    <a href="{{ post.get_absolute_url }}"><span itemprop="name">{{ post.title }}</span></a>
+                </h1>
+                <ul>
+                    <li class="published-date">Escrito por <a href="{% url 'user' post.user %}"><span itemprop="author">{{ post.user }}</span></a> em <a href="{% url 'archive_day' year=post.published_date.year month=post.published_date.month day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a></li>
+                    <li class="comments">
+                        {% get_comment_count for post as comment_count %}
+                        {% if comment_count > 0 %}
+                            <a href="{{ post.get_absolute_url }}#comments-section">{{ comment_count }} comentário(s)</a>
+                        {% else %}
+                            <a href="{{ post.get_absolute_url }}#comments-form">Deixe um comentário</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </header>
+            <div class="content">
+                {{ post.excerpt|escape|linebreaks }}
+                <a class="more-link" href="{{ post.get_absolute_url }}">Continue lendo »</a>
+            </div>
+            <footer>
+                <ul>
+                    <li class="keywords">
+                        Categoria(s):
+                        {% for category in post.category.all %}
+                            <a href="{{ category.get_absolute_url }}"><span itemprop="keywords">{{ category }}</span></a>
+                        {% endfor %}
+                    </li>
+                </ul>
+            </footer>
         </article>
     {% empty %}
-        Nada encontrado.
+        Nada encontrado
     {% endfor %}
 
-    {% if is_paginated %}
-        <div id="pagination">
-            <span class="step-links">
-                <span class="current">
-                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
-                </span>
 
-                {% if page_obj.has_next %}
-                    <a class="next" href="?page={{ page_obj.next_page_number }}">← Posts mais antigos</a>
-                {% endif %}
-
-                {% if page_obj.has_previous %}
-                    <a class="previous" href= "?page={{ page_obj.previous_page_number }}">Posts mais recentes →</a>
-                {% endif %}
-            </span>
-        </div>
-    {% endif %}
 {% endblock %}

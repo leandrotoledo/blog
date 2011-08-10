@@ -1,6 +1,5 @@
 * {
     font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
-    font-size: 16px;
 }
 
 body {
@@ -8,7 +7,7 @@ body {
     background: #F1F1F1;
 }
 
-#content {
+{
     background: #FFFFFF;
     border: 1px solid #FFFFFF;
     border-radius: 15px;
@@ -18,63 +17,31 @@ body {
     width: 940px;
 }
 
-#content header h1 {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-#content header p {
-    background: #FFFFFF url('/static/images/gnu_left.png') no-repeat 728px -90px;
-    border-top: 4px solid black;
-    margin-top: 20px;
-    margin-bottom: 0px;
-    padding-top: 62px;
-    padding-right: 150px;
-    text-align: right;
-}
-
-#content #top-menu {
-    background: #000000;
-    padding: 10px 0;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-#content #top-menu a {
-    color: #FFFFFF;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-#content #top-menu a:first-child {
-    margin-left: 20px;
-}
-
-#content #main {
+#main {
     min-height: 480px;
 }
 
-#content #main #articles {
+#main #articles {
     float: left;
     width: 680px;
     margin: 20px 5px;
     padding: 0px 10px;
 }
 
-#content #main #articles #description {
+#main #articles #description {
     color: #888888;
     margin: 0;
     padding: 0;
 }
 
-#content #main #articles .post h1:first-child {
+#main #articles .post h1:first-child {
     color: #000000;
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
 }
 
-#content #main #articles .post h1:first-child a {
+#main #articles .post h1:first-child a {
     color: #000000;
     text-decoration: none;
 }
@@ -109,18 +76,18 @@ body {
     color: #0066CC;
 }
 
-#content #main #articles .post .excerpt, #content #main #articles .post .content {
+#main #articles .post .excerpt, #main #articles .post .content {
     clear: both;
     text-align: justify;
     font-size: 15px;
 }
 
-#content #main #articles .post {
+#main #articles .post {
     border-bottom: 1px solid #EEEEEE;
     margin-bottom: 20px;
 }
 
-#content #main #articles .post h4 {
+#main #articles .post h4 {
     display: block;
     padding-left: 20px;
     font-weight: bold;
@@ -128,35 +95,35 @@ body {
     background: url('/static/images/icons.gif') no-repeat left -22px;
 }
 
-#content #main #articles .post h4 a {
+#main #articles .post h4 a {
     text-decoration: none;
 }
 
-#content #main #articles #comments {
+#main #articles #comments {
     margin-left: 55px;
 }
 
-#content #main #articles #comments dt * {
+#main #articles #comments dt * {
     font-weight: normal;
     font-size: 12px;
 }
 
-#content #main #articles #comments dt strong {
+#main #articles #comments dt strong {
     font-weight: bold;
 }
 
-#content #main #articles #comments dd {
+#main #articles #comments dd {
     padding: 10px;
     margin-bottom: 20px;
     clear: both;
 }
 
-#content #main #articles .comments-anchor {
+#main #articles .comments-anchor {
     color: #444444;
     text-decoration: none;
 }
 
-#content #main #articles #responses form th {
+#main #articles #responses form th {
     width: 220px;
     color: #444444;
     text-align: right;
@@ -164,122 +131,40 @@ body {
     font-weight: bold;
 }
 
-#content #main #articles #responses form td {
+#main #articles #responses form td {
     background: #FFFFFF;
 }
 
-#content #main #articles #responses label[for=id_honeypot] {
+#main #articles #responses label[for=id_honeypot] {
     float: left;
     font-size: 10px;
     font-weight: normal;
 }
 
-#content #main #articles #pagination {
+#main #articles #pagination {
     display: block;
 }
 
-#content #main #articles #pagination a {
+#main #articles #pagination a {
     color: #0066CC;
     text-decoration: none;
     font-weight: bold;
 }
 
-#content #main #articles #pagination a:hover {
+#main #articles #pagination a:hover {
     color: #0099FF;
 }
 
-#content #main #articles #pagination .next {
+#main #articles #pagination .next {
     float: left;
 }
 
-#content #main #articles #pagination .previous {
+#main #articles #pagination .previous {
     float: right;
 }
 
-#content #main #articles #pagination .current {
+#main #articles #pagination .current {
     color: #888888;
     display: block;
     text-align: center;
-}
-
-#content #main #menu {
-    width: 200px;
-    float: right;
-    margin: 20px 5px 20px 0px;
-    padding-left: 18px;
-    border-left: 1px solid #EEEEEE;
-}
-
-#content #main #menu h2 {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-#content #main #menu nav {
-    margin-left: 20px;
-}
-
-#content #main #menu nav * {
-    font-size: 12px;
-}
-
-#content #main #menu nav ul {
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
-}
-
-#content #main #menu nav ul li {
-    color: #888888;
-}
-
-#content #main #menu nav ul li a {
-    color: #444444;
-    padding-left: 12px;
-    text-decoration: none;
-    background: url('/static/images/icons.gif') no-repeat 0px -284px;
-}
-
-#content #main #menu nav ul li a:hover {
-    color: #888888;
-    background: url('/static/images/icons.gif') no-repeat -10px -264px;
-}
-
-.powered-by-django {
-    display: block;
-    border: 0px;
-    text-align: center;
-}
-
-#content footer {
-    clear: both;
-    text-align: left;
-    font-size: 11px;
-    border-top: 4px solid black;
-    padding-top: 14px;
-}
-
-#content footer #creative-commons-license img {
-    float: left;
-    padding-right: 5px;
-}
-
-#badges {
-    width: 420px;
-    margin: 0 auto;
-}
-
-#badges ul {
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
-}
-
-#badges ul li {
-    float: left;
-    margin-left: 4px;
-}
-
-#content#badges ul li:first-child {
-    margin-left: 0px;
 }
