@@ -123,7 +123,7 @@ class PostAdmin(admin.ModelAdmin):
         obj.save()
 admin.site.register(Post, PostAdmin)
 
-
+"""
 class PostModerator(CommentModerator):
     email_notification = True
     #TODO: https://docs.djangoproject.com/en/dev/ref/contrib/comments/moderation/
@@ -143,3 +143,4 @@ def comment_notification(sender, comment, request, **kwargs):
 
     send_mail(subject, content, 'blog@leandrotoledo.com.br', ['leandrotoledodesouza@gmail.com'])
 comment_was_posted.connect(comment_notification)
+"""

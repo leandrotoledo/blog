@@ -32,7 +32,8 @@
                 </ul>
             </header>
             <div class="content">
-                {{ post.excerpt|escape|linebreaks }}
+                {{ post.excerpt|safe }}
+                <br />
                 <a class="more-link" href="{{ post.get_absolute_url }}">Continue lendo »</a>
             </div>
             <footer>

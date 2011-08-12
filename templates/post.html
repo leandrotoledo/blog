@@ -10,9 +10,7 @@
 {% block articles %}
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <header>
-            <h1 class="title">
-                <a href="{{ post.get_absolute_url }}"><span itemprop="name">{{ post.title }}</span></a>
-            </h1>
+            <h1 class="title"><span itemprop="name">{{ post.title }}</span></h1>
             <ul>
                 <li class="published-date">Escrito por <a href="{% url 'user' post.user %}"><span itemprop="author">{{ post.user }}</span></a> em <a href="{% url 'archive_day' year=post.published_date.year month=post.published_date.month day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a></li>
                 <li class="comments">
@@ -31,46 +29,40 @@
                 </li>
             </ul>
         </header>
-        <div class="content" itemprop="articleBody">{{ post.content|escape|linebreaks }}</div>
-    </article>
+        <div class="content" itemprop="articleBody">{{ post.content|safe }}</div>
+        <br />
+        <div id="comments">
+            {% get_comment_count for post as comment_count %}
+            {% if comment_count > 0 %}
+                <h1 class="comments-anchor"><a id="comments-section">{{ comment_count }} resposta(s) para este artigo</a></h1>
+                {% get_comment_list for post as comment_list %}
+                {% for comment in comment_list %}
+                    <article id="c{{ comment.pk }}">
+                        <ul>
+                            {% if comment.user_url %}
+                                <li><a href="{{ comment.user_url }}" target="_blank">{{ comment.user_name }}</a> <em>disse:</em></li>
+                            {% else %}
+                                <li>{{ comment.user_name }} <em>disse:</em></li>
+                            {% endif %}
+                                <li class="published-date">em <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:'d/m/Y \à\s h:i A' }}</time></li>
+                        </ul>
+                        <div class="content">{{ comment.comment }}</div>
+                    </article>
+                {% endfor %}
+            {% endif %}
 
-    {% get_comment_count for post as comment_count %}
-    {% if comment_count > 0 %}
-        <h2><a id="comments-section" class="comments-anchor">{{ comment_count }} resposta(s) para este artigo</a></h2>
-
-        <dl id="comments">
-        {% get_comment_list for post as comment_list %}
-        {% for comment in comment_list %}
-            <dt id="c{{ comment.pk }}">
-                {% if comment.user_url %}
-                <strong><a href="{{ comment.user_url }}" target="_blank">{{ comment.user_name }}</a></strong> <em>disse:</em><br />
-                {% else %}
-                <strong>{{ comment.user_name }}</strong> <em>disse:</em><br />
-                {% endif %}
-                <span class="published-date">em <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:'d/m/Y - h:i A' }}</time></span>
-            </dt>
-            <dd>
-                {{ comment.comment }}
-            </dd>
-        {% endfor %}
-        </dl>
-    {% endif %}
-
-    <article id="responses">
-        {% get_comment_form for post as form %}
-        <h2><a id="comments-form" class="comments-anchor">Deixe um comentário</a></h2>
-
-        <form action="{% comment_form_target %}" method="post">
-            {% csrf_token %}
-            <table>
-            {{ form }}
-            <tr>
-                <th><input type="hidden" name="next" value="{{ post.get_absolute_url }}" /></th>
-                <td colspan="1">
-                    <input type="submit" name="submit" value="Publicar">
-                </td>
-            </tr>
-            </table>
-        </form>
+            {% get_comment_form for post as form %}
+            <h1 class="comments-anchor"><a id="comments-form">Deixe um comentário</a></h1>
+            <form action="{% comment_form_target %}" method="post">
+                {% csrf_token %}
+                <table>
+                    {{ form }}
+                    <tr>
+                        <th><input type="hidden" name="next" value="{{ post.get_absolute_url }}" /></th>
+                        <td colspan="1"><input type="submit" name="submit" value="Publicar"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </article>
 {% endblock %}

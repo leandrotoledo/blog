@@ -8,6 +8,17 @@ body {
     margin-top: 10px;
 }
 
+h1 {
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 15px 0;
+}
+h1 a {
+    color: #000000;
+    text-decoration: none;
+}
+
 .container {
     -moz-border-radius: 15px;
     background-color: #FFFFFF;
@@ -82,8 +93,8 @@ body {
 }
 #main #articles .post {
     border-bottom: 1px solid #EEEEEE;
-    margin: 0 0 5px 0;
-    padding: 0 0 20px 20px;
+    margin: 0 0 5px 20px;
+    padding: 0 0 20px 0;
 }
 #main #articles .post ul {
     margin: 0;
@@ -100,12 +111,6 @@ body {
 #main #articles .post ul li a:hover {
     color: #0066CC;
 }
-#main #articles .post header h1 a {
-    color: #000000;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-}
 #main #articles .post .published-date {
     background: url('/static/images/icons.gif') no-repeat left -40px;
     float: left;
@@ -120,16 +125,51 @@ body {
 #main #articles .post .content {
     clear: both;
     font-size: 14px;
-    margin: 0;
-    padding-top: 24px;
+    padding: 12px 0 12px 0;
     text-align: justify;
 }
 #main #articles .post .content .more-link {
     background: url('/static/images/icons.gif') no-repeat left -22px;
+    display: block;
     font-size: 12px;
     font-weight: bold;
+    margin-top: 12px;
     padding-left: 20px;
     text-decoration: none;
+}
+
+/* * Content section
+ * Comments
+ */
+#main #articles .post #comments form td {
+    background: #FFFFFF;
+}
+#main #articles .post #comments label {
+    float: right;
+}
+#main #articles .post #comments label[for=id_honeypot] {
+    font-size: 10px;
+    font-weight: normal;
+    text-align: right;
+}
+#main #articles .post #comments article {
+    margin-left: 64px;
+    padding: 15px 0;
+}
+#main #articles .post #comments article ul li:first-child {
+    color: #333333;
+}
+#main #articles .post #comments article ul li {
+    background: none;
+    color: #999999;
+    padding: 0;
+}
+#main #articles .post #comments article ul li a {
+    color: #0066CC;
+    font-weight: bold;
+}
+.comments-anchor a:hover, .comments-anchor a:hover {
+    color: #000000;
 }
 
 /* * Content section
