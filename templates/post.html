@@ -42,7 +42,7 @@
                             {% if comment.user_url %}
                                 <li><a href="{{ comment.user_url }}" target="_blank">{{ comment.user_name }}</a> <em>disse:</em></li>
                             {% else %}
-                                <li>{{ comment.user_name }} <em>disse:</em></li>
+                                <li><strong>{{ comment.user_name }}</strong> <em>disse:</em></li>
                             {% endif %}
                                 <li class="published-date">em <time datetime="{{ comment.submit_date|date:'c' }}">{{ comment.submit_date|date:'d/m/Y \à\s h:i A' }}</time></li>
                         </ul>
