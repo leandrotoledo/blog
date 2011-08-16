@@ -29,7 +29,7 @@
                 </li>
             </ul>
         </header>
-        <div class="content" itemprop="articleBody">{{ post.content|safe }}</div>
+        <div class="content" itemprop="articleBody">{{ post.content|safe|linebreaks }}</div>
         <br />
         <div id="comments">
             {% get_comment_count for post as comment_count %}
