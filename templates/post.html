@@ -3,7 +3,7 @@
 {% load comments %}
 {% load url from future %}
 
-{% block title %}{{ post.title }} - Blog do Leandro Toledo{% endblock %}
+{% block title %}{{ post.title }} - {% endblock %}
 {% block description %}{{ post.excerpt }}{% endblock %}
 {% block keywords %}{% for category in post.category.all %}{{ category }},{% endfor %}{% endblock %}
 
@@ -11,8 +11,10 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <header>
             <h1 class="title"><span itemprop="name">{{ post.title }}</span></h1>
+
             <ul>
                 <li class="published-date">Escrito por <a href="{% url 'user' post.user %}"><span itemprop="author">{{ post.user }}</span></a> em <a href="{% url 'archive_day' year=post.published_date.year month=post.published_date.month day=post.published_date.day %}"><time datetime="{{ post.published_date|date:'Y-m-d' }}"><span itemprop="datePublished">{{ post.published_date|date:'d/m/Y' }}</span></time></a></li>
+
                 <li class="comments">
                     {% get_comment_count for post as comment_count %}
                     {% if comment_count > 0 %}
@@ -21,6 +23,7 @@
                         <a href="{{ post.get_absolute_url }}#comments-form">Deixe um comentário</a>
                     {% endif %}
                 </li>
+
                 <li class="keywords" style="clear: both;">
                     Categoria(s):
                     {% for category in post.category.all %}
@@ -28,9 +31,14 @@
                     {% endfor %}
                 </li>
             </ul>
+
+            <h2 class="quote"><span itemprop="description">{{ post.excerpt }}</span></h2>
         </header>
+
         <div class="content" itemprop="articleBody">{{ post.content|safe|linebreaks }}</div>
+
         <br />
+
         <div id="comments">
             {% get_comment_count for post as comment_count %}
             {% if comment_count > 0 %}

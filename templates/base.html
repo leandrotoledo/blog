@@ -71,16 +71,6 @@
 
             <aside id="menu">
                 <nav>
-                    {% if user.is_staff %}
-                    <h1>Administração</h1>
-                    <ul>
-                        <li><a href="{% url 'admin:index' %}">Home</a></li>
-                        <li><a href="{% url 'admin:blog_post_add' %}">Novo artigo</a></li>
-                    </ul>
-
-                    <br />
-                    {% endif %}
-
                     <h1>Categorias</h1>
                     {% if categories %}
                         <ul>
@@ -91,8 +81,6 @@
                     {% else %}
                         <ul><li>Nada encontrado</li></ul>
                     {% endif %}
-
-                    <br />
 
                     <h1>Arquivos</h1>
                     {% if archives %}
@@ -105,12 +93,18 @@
                         <ul><li>Nada encontrado</li></ul>
                     {% endif %}
 
-                    <br />
-
                     <h1>Blogs</h1>
                     <ul>
                         <li><a href="">Link</a></li>
                     </ul>
+
+                    {% if user.is_staff %}
+                        <h1>Administração</h1>
+                        <ul>
+                            <li><a href="{% url 'admin:index' %}">Home</a></li>
+                            <li><a href="{% url 'admin:blog_post_add' %}">Novo artigo</a></li>
+                        </ul>
+                    {% endif %}
                 </nav>
                 <!--<a class="powered-by-django" href=""><img src="{{ STATIC_URL }}images/powered_by_django.gif" alt="Powered by Django" /></a>-->
             </aside>
