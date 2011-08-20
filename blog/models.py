@@ -51,7 +51,7 @@ class CommonPage(models.Model):
     excerpt = models.TextField(
         _('excerpt'),
         max_length = 140,
-        help_text = _('Abstracts are descriptions made manually on the content of your post.'))
+        help_text = _('Abstracts are descriptions made manually on the content.'))
 
     content = models.TextField(
         _('content'),
