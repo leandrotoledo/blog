@@ -5,7 +5,8 @@
 
 {% block description %}O Blog do Leandro Toledo é um conjunto de artigos sobre GNU/Linux, Tecnologias, Redes de Computadores, Crônicas, CentOS, Ubuntu, Nagios e muito mais.{% endblock %}
 {% block keywords %}{% endblock %}
-{% block title %}{% if description %}{{description}} {{ day|date:'d/m/Y' }}{{ month|date:'m/Y' }}{{ year }} - {% endif %}{% endblock %}
+
+{% block title %}{% if description %}{{description}} {{ day|date:'d/m/Y' }}{{ month|date:'m/Y' }}{{ year }}{% else %}Blog do Leandro Toledo{% endif %}{% endblock %}
 
 {% block articles %}
     {% if description %}

@@ -4,9 +4,9 @@
 <!DOCTYPE HTML>
 <html lang="pt-br" xml:lang="pt-br">
     <head>
-        <title>{% block title %}{% endblock %}Blog do Leandro Toledo</title>
+        <title>{% block title %}Blog do Leandro Toledo{% endblock %}</title>
         <meta name="description" content="{% block description %}{% endblock %}" />
-        <meta name="keywords" content="{% block keywords %}{% endblock %}gnu,linux,leandro toledo,tecnologias,redes de computadores,crônicas,artigos,centos,ubuntu,nagios" />
+        <meta name="keywords" content="{% block keywords %}{% endblock %}" />
         <meta name="author" content="Leandro Toledo" />
         <meta charset="utf-8" />
         <link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" />
@@ -39,8 +39,9 @@
             <nav id="top-menu">
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">Sobre</a></li>
-                    <li><a href="{% url 'contact' %}">Contato</a></li>
+                    {% for page in pages %}
+                        <li><a href="{{ page.get_absolute_url }}">{{ page }}</a></li>
+                    {% endfor %}
                     <li><a href="">Feed (RSS)</a></li>
                 </ul>
             </nav>
@@ -104,9 +105,15 @@
                     {% endif %}
 
                     <h1>Blogs</h1>
-                    <ul>
-                        <li><a href="">Link</a></li>
-                    </ul>
+                    {% if links %}
+                        <ul>
+                            {% for link in links %}
+                                <li><a href="{{ link.url }}" target="_blank">{{ link }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <ul><li>Nada encontrado</li></ul>
+                    {% endif %}
 
                     {% if user.is_staff %}
                         <h1>Administração</h1>

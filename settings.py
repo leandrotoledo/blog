@@ -105,6 +105,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'public_html.blog.context_processors.categories',
     'public_html.blog.context_processors.archives',
+    'public_html.blog.context_processors.pages',
+    'public_html.blog.context_processors.links',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -7,6 +7,16 @@ from django.contrib.auth.models import User
 from public_html.blog.models import *
 
 
+class PageDetailView(DetailView):
+    """
+    Page
+    """
+
+    context_object_name = 'page'
+    template_name = 'page.html'
+    model = Page
+
+
 class PostListView(ListView):
     """
     Index

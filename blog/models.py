@@ -35,21 +35,22 @@ class Category(models.Model):
 admin.site.register(Category)
 
 
-class Post(models.Model):
+class CommonPage(models.Model):
     title = models.CharField(
         _('title'),
-        max_length = 255,
+        max_length = 50,
         help_text = _('Type the title here.'),
         unique = True)
 
     slug = models.SlugField(
         _('slug'),
-        max_length = 100,
+        max_length = 50,
         help_text = _('Type the slug here.'),
         unique = True)
 
     excerpt = models.TextField(
         _('excerpt'),
+        max_length = 140,
         help_text = _('Abstracts are descriptions made manually on the content of your post.'))
 
     content = models.TextField(
@@ -73,14 +74,20 @@ class Post(models.Model):
 
     user = models.ForeignKey(User)
 
-    category = models.ManyToManyField(Category)
-
     def __unicode__(self):
         return self.title
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Post, self).save()
+        super(CommonPage, self).save()
+
+    class Meta:
+        abstract = True
+        ordering = ['-published_date']
+
+
+class Post(CommonPage):
+    category = models.ManyToManyField(Category)
 
     @permalink
     def get_absolute_url(self):
@@ -89,58 +96,29 @@ class Post(models.Model):
         d = self.published_date.strftime('%d')
 
         return ('post', None, {'year': y, 'month': m, 'day': d, 'slug': self.slug})
+admin.site.register(Post)
+
+
+class Page(CommonPage):
+    @permalink
+    def get_absolute_url(self):
+        return ('page', [self.slug])
+admin.site.register(Page)
+
+
+class Link(models.Model):
+    title = models.CharField(
+        _('title'),
+        max_length = 50,
+        help_text = _('Type the link title here.'),
+        unique = True)
+
+    url = models.URLField(
+        _('url'))
+
+    def __unicode__(self):
+        return self.title
 
     class Meta:
-        ordering = ['-published_date']
-
-
-class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published_date', 'user')
-
-    search_fields = ['title']
-
-    date_hierarchy = 'published_date'
-
-    fieldsets = [
-        (None, {'fields':   ['title'],
-                'classes':  ['wide']}),
-
-        (None, {'fields':   ['content'],
-                'classes':  ['wide']}),
-
-        (_('publish'), {'fields':   ['published_date', 'enable_comments'],
-                        'classes':  ['collapse', 'wide']}),
-
-        (_('excerpt'), {'fields':   ['excerpt'],
-                        'classes':  ['collapse', 'wide']}),
-
-        (_('category'), {'fields':  ['category'],
-                        'classes':  ['collapse', 'wide']})
-    ]
-
-    def save_model(self, request, obj, form, change):
-        obj.user = request.user
-        obj.save()
-admin.site.register(Post, PostAdmin)
-
-"""
-class PostModerator(CommentModerator):
-    email_notification = True
-    #TODO: https://docs.djangoproject.com/en/dev/ref/contrib/comments/moderation/
-    enable_field = 'enable_comments'
-moderator.register(Post, PostModerator)
-
-
-def comment_notification(sender, comment, request, **kwargs):
-    post = Post.objects.get(pk=request.REQUEST['object_pk'])
-
-    subject = u'[Blog do Leandro Toledo] Comentário: "%s"' % post
-    author = _('Author: %s (IP: %s)' % (comment.user_name, comment.ip_address))
-    email = _('E-mail: %s' % comment.user_email)
-    url = _('URL: %s' % comment.user_url)
-
-    content = _('New comment on post "%s"\n%s\n%s\n%s\n\n%s' % (post, author, email, url, comment.comment))
-
-    send_mail(subject, content, 'blog@leandrotoledo.com.br', ['leandrotoledodesouza@gmail.com'])
-comment_was_posted.connect(comment_notification)
-"""
+        ordering = ['title']
+admin.site.register(Link)

@@ -3,7 +3,7 @@
 {% load comments %}
 {% load url from future %}
 
-{% block title %}{{ post.title }} - {% endblock %}
+{% block title %}{{ post }}{% endblock %}
 {% block description %}{{ post.excerpt }}{% endblock %}
 {% block keywords %}{% for category in post.category.all %}{{ category }},{% endfor %}{% endblock %}
 
