@@ -147,6 +147,11 @@ h1 a {
 #main #articles .post .content p:first-letter {
     margin-left: 20px;
 }
+#main #articles .post .content h2 {
+    color: #444444;
+    font-size: 16px;
+    font-weight: bold;
+}
 #main #articles .post .content .more-link {
     background: url('/static/images/icons.gif') no-repeat left -21px;
     display: block;
