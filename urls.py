@@ -54,4 +54,6 @@ urlpatterns = patterns('',
     url(r'^pages/(?P<slug>[-\w]+)/$',
         PageDetailView.as_view(),
         name='page'),
+
+    # Criar redirect para compatibilidade com blog antigo
 )

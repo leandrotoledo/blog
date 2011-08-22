@@ -1,170 +1,286 @@
-* {
-    font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+body, * {
+    font-family: Verdana, Arial, sans-serif;
 }
 
 body {
     color: #333333;
-    background: #F1F1F1;
+    background: #E6E6E6;
+    margin-top: 10px;
 }
 
-{
-    background: #FFFFFF;
+h1 {
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 15px 0;
+}
+h1 a {
+    color: #000000;
+    text-decoration: none;
+}
+.info, .error, .warning {
+    -moz-border-radius: 5px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+.quote {
+    -moz-border-radius: 5px;
+    background: #EEEEEE url('/static/images/icon-quote.gif') no-repeat left top;
+    border-radius: 5px;
+    color: #888888;
+    font-size: 14px;
+    font-style: italic;
+    padding: 8px 8px 8px 28px;
+    margin: 24px 0 10px 0;
+    text-align: justify;
+}
+
+.container {
+    -moz-border-radius: 15px;
+    background-color: #FFFFFF;
     border: 1px solid #FFFFFF;
     border-radius: 15px;
-    display: block;
-    margin: 20px auto;
-    padding: 20px 20px;
+    margin: 0 auto;
+    padding: 10px;
     width: 940px;
 }
 
-#main {
-    min-height: 480px;
+/* Header section */
+#header {
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-bottomright: 0;
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-bottom: 0;
+}
+#header h1:first-child {
+    font-size: 28px;
+    font-weight: bold;
+}
+#header figure {
+    background: url('/static/images/gnu_left.png') no-repeat 728px -90px;
+    border-top: 4px solid black;
+    height: 140px;
+    padding-top: 10px;
+    padding-right: 150px;
+    text-align: right;
+}
+#header figure p {
+    font-family: Arial;
+    font-size: 14px;
+    font-style: italic;
+    margin: 0;
+    padding-top: 70px;
+}
+#header figcaption cite {
+    font-size: 14px;
+    font-weight: bold;
+}
+#header #top-menu {
+    background: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+#header #top-menu ul li {
+    float: left;
+    list-style-type: none;
+    margin: 0 10px;
+}
+#header #top-menu ul li a {
+    color: #FFFFFF;
+    font-size: 14px;
+    text-decoration: none;
 }
 
+/* Content section */
+#main {
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+/* * Content section
+ * Articles
+ * */
 #main #articles {
     float: left;
-    width: 680px;
-    margin: 20px 5px;
-    padding: 0px 10px;
+    width: 700px;
 }
-
-#main #articles #description {
-    color: #888888;
+#main #articles .post {
+    border-bottom: 1px solid #EEEEEE;
+    margin: 0 0 5px 20px;
+    padding: 0 0 20px 0;
+}
+#main #articles .post ul {
     margin: 0;
     padding: 0;
 }
-
-#main #articles .post h1:first-child {
-    color: #000000;
-    font-weight: bold;
-    font-size: 20px;
-    text-decoration: none;
-}
-
-#main #articles .post h1:first-child a {
-    color: #000000;
-    text-decoration: none;
-}
-
-.published-date, .published-date *, .comments, .comments *, .keywords, .keywords * {
+#main #articles .post ul li {
     color: #888888;
-    font-size: 12px;
-}
-
-.published-date {
-    float: left;
+    list-style-type: none;
     padding-left: 20px;
-    background: url('/static/images/icons.gif') no-repeat left -40px;
 }
-
-.published-date span:hover {
+#main #articles .post ul li a {
+    color: #888888;
+}
+#main #articles .post ul li a:hover {
     color: #0066CC;
 }
-
-.comments {
-    float: right;
-    padding-left: 20px;
-    background: url('/static/images/icons.gif') no-repeat left -100px;
+#main #articles .post .published-date {
+    background: url('/static/images/icons.gif') no-repeat left -40px;
+    float: left;
 }
-
-.keywords {
-    padding-left: 20px;
+#main #articles .post .comments {
+    background: url('/static/images/icons.gif') no-repeat left -100px;
+    float: right;
+}
+#main #articles .post .keywords {
     background: url('/static/images/icons.gif') no-repeat -20px -240px;
 }
-
-.keywords a span:hover {
-    color: #0066CC;
-}
-
-#main #articles .post .excerpt, #main #articles .post .content {
+#main #articles .post .content {
     clear: both;
+    font-size: 14px;
+    padding-top: 12px;
     text-align: justify;
-    font-size: 15px;
 }
-
-#main #articles .post {
-    border-bottom: 1px solid #EEEEEE;
-    margin-bottom: 20px;
+#main #articles .post .content p:first-letter {
+    margin-left: 20px;
 }
-
-#main #articles .post h4 {
+#main #articles .post .content h2 {
+    color: #000000;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+#main #articles .post .content .more-link {
+    background: url('/static/images/icons.gif') no-repeat left -21px;
     display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 12px;
     padding-left: 20px;
-    font-weight: bold;
-    font-size: 12px;
-    background: url('/static/images/icons.gif') no-repeat left -22px;
-}
-
-#main #articles .post h4 a {
     text-decoration: none;
+    width: 120px;
 }
 
-#main #articles #comments {
-    margin-left: 55px;
-}
-
-#main #articles #comments dt * {
-    font-weight: normal;
-    font-size: 12px;
-}
-
-#main #articles #comments dt strong {
-    font-weight: bold;
-}
-
-#main #articles #comments dd {
-    padding: 10px;
-    margin-bottom: 20px;
-    clear: both;
-}
-
-#main #articles .comments-anchor {
-    color: #444444;
-    text-decoration: none;
-}
-
-#main #articles #responses form th {
-    width: 220px;
-    color: #444444;
-    text-align: right;
-    padding-right: 10px;
-    font-weight: bold;
-}
-
-#main #articles #responses form td {
+/* * Content section
+ * Comments
+ */
+#main #articles .post #comments form td {
     background: #FFFFFF;
 }
-
-#main #articles #responses label[for=id_honeypot] {
-    float: left;
-    font-size: 10px;
-    font-weight: normal;
-}
-
-#main #articles #pagination {
-    display: block;
-}
-
-#main #articles #pagination a {
-    color: #0066CC;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#main #articles #pagination a:hover {
-    color: #0099FF;
-}
-
-#main #articles #pagination .next {
-    float: left;
-}
-
-#main #articles #pagination .previous {
+#main #articles .post #comments label {
     float: right;
 }
+#main #articles .post #comments label[for=id_honeypot] {
+    font-size: 10px;
+    font-weight: normal;
+    text-align: right;
+}
+#main #articles .post #comments article {
+    margin-left: 64px;
+    padding: 15px 0;
+}
+#main #articles .post #comments article ul li:first-child {
+    color: #333333;
+}
+#main #articles .post #comments article ul li {
+    background: none;
+    padding: 0;
+}
+#main #articles .post #comments article ul li a {
+    color: #0066CC;
+    font-weight: bold;
+}
+#main #articles .post #comments article ul .published-date a {
+    color: #999999;
+    font-weight: normal;
+    text-decoration: none;
+}
+#main #articles .post #comments article ul .published-date a:hover {
+    color: #0066CC;
+}
+.comments-anchor a:hover, .comments-anchor a:hover {
+    color: #000000;
+}
 
-#main #articles #pagination .current {
+/* * Content section
+ * Menu
+ * */
+#main #menu {
+    border-left: 1px solid #EEEEEE;
+    float: right;
+    padding-left: 15px;
+    width: 200px;
+}
+#main #menu nav h1 {
+    font-size: 12px;
+    font-weight: bold;
+}
+#main #menu nav ul {
+    margin: 10px 0;
+    padding: 0;
+}
+#main #menu nav ul li {
     color: #888888;
+    list-style-type: none;
+    margin-left: 20px;
+}
+#main #menu nav ul li a {
+    background: url('/static/images/icons.gif') no-repeat 0px -282px;
+    color: #444444;
+    padding-left: 12px;
+    text-decoration: none;
+}
+#main #menu nav ul li a:first-letter {
+    text-transform: capitalize;
+}
+#main #menu nav ul li a:hover {
+    background: url('/static/images/icons.gif') no-repeat -10px -262px;
+    color: #888888;
+}
+#main #menu .powered-by-django {
     display: block;
+    border: 0px;
     text-align: center;
+    margin-top: 100%;
+}
+
+/* Footer section */
+#footer {
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-topright: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-top: 0;
+}
+#footer div:first-child {
+    border-top: 4px solid black;
+    font-size: 10px;
+    padding-top: 8px;
+}
+#footer #creative-commons-license img {
+    float: left;
+    padding-right: 5px;
+}
+
+/* Badges section */
+#badges {
+    width: 420px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+#badges ul {
+    margin: 0px;
+    padding: 0px;
+}
+#badges ul li {
+    float: left;
+    list-style-type: none;
+    margin-left: 4px;
+}
+#content#badges ul li:first-child {
+    margin-left: 0px;
 }
