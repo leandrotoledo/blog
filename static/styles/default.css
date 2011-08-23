@@ -151,8 +151,15 @@ h1 a {
     color: #000000;
     font-size: 22px;
     font-weight: bold;
-    margin: 0;
+    margin: 5px 0;
+}
+#main #articles .post .content ul li {
+    list-style: square;
+    margin-left: 36px;
     padding: 0;
+}
+#main #articles .post .content pre {
+    border: 1px solid black;
 }
 #main #articles .post .content .more-link {
     background: url('/static/images/icons.gif') no-repeat left -21px;
