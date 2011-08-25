@@ -162,8 +162,22 @@ h1 a {
     margin-left: 36px;
     padding: 0;
 }
-#main #articles .post .content pre {
+#main #articles .post .content .code {
     border: 1px solid black;
+    background: #000000;
+    color: #FFFFFF;
+    font-family: Monospace, sans-serif;
+    font-size: 12px;
+    margin: 10px 20px;
+    padding: 5px 8px;
+}
+#main #articles .post .content figure {
+    display: block;
+    text-align: center;
+}
+#main #articles .post .content figure figcaption {
+    font-size: 10px;
+    font-style: italic;
 }
 #main #articles .post .content .more-link {
     background: url('/static/images/icons.gif') no-repeat left -21px;
