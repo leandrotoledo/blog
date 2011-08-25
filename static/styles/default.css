@@ -158,7 +158,7 @@ h1 a {
     margin: 10px 0 0 0;
 }
 #main #articles .post .content ol {
-    margin-bottom: 0;
+    margin: 0 0 0 20px;
 }
 #main #articles .post .content ul li {
     list-style: square;
