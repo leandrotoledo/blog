@@ -161,6 +161,7 @@ h1 a {
     margin: 0 0 0 20px;
 }
 #main #articles .post .content ul li {
+    color: #555555;
     list-style: square;
     margin-left: 36px;
     padding: 0;
@@ -171,7 +172,7 @@ h1 a {
     color: #FFFFFF;
     font-family: Monospace, sans-serif;
     font-size: 12px;
-    margin: 10px 20px;
+    margin: 10px 0 10px 20px;
     padding: 5px 8px;
 }
 #main #articles .post .content figure {
