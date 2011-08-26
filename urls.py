@@ -1,12 +1,22 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import DetailView, ListView, TemplateView, RedirectView
 from django.views.generic.dates import DayArchiveView, MonthArchiveView, YearArchiveView
+from django.contrib.sitemaps import GenericSitemap
+from public_html.blog.models import *
 from public_html.blog.views import *
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
+info_dict = {
+    'queryset': Post.objects.all(),
+    'date_field': 'updated_date'
+}
+
+sitemaps = {
+    'blog': GenericSitemap(info_dict, priority=1.0)
+}
 
 urlpatterns = patterns('',
     (r'^comments/', include('django.contrib.comments.urls')),
@@ -54,6 +64,8 @@ urlpatterns = patterns('',
     url(r'^pages/(?P<slug>[-\w]+)/$',
         PageDetailView.as_view(),
         name='page'),
+
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 
     # Criar redirect para compatibilidade com blog antigo
 )
