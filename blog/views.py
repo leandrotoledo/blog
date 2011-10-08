@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.contrib.auth.models import User
-from public_html.blog.models import *
+from .models import *
 
 
 class PageDetailView(DetailView):

@@ -1,6 +1,5 @@
 from django.db.models import Count
-
-from public_html.blog.models import Page, Post, Category, Link
+from .models import Page, Post, Category, Link
 
 def archives(request):
     return {'archives': Post.objects.filter().dates('published_date', 'month')}

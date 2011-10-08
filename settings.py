@@ -1,7 +1,8 @@
 # Django settings for public_html project.
 import os
 
-ROOTDIR = os.path.realpath(os.path.dirname(__file__))
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -14,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE':   'django.db.backends.sqlite3',           # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME':     os.path.join(ROOTDIR, 'blog.sqlite3'),  # Or path to database file if using sqlite3.
+        'NAME':     os.path.join(PROJECT_PATH, 'blog.sqlite3'),  # Or path to database file if using sqlite3.
         'USER':     '',                                     # Not used with sqlite3.
         'PASSWORD': '',                                     # Not used with sqlite3.
         'HOST':     '',                                     # Set to empty string for localhost. Not used with sqlite3.
@@ -75,7 +76,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(ROOTDIR, 'static/'),
+    os.path.join(PROJECT_PATH, 'static/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -103,10 +104,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
-    'public_html.blog.context_processors.categories',
-    'public_html.blog.context_processors.archives',
-    'public_html.blog.context_processors.pages',
-    'public_html.blog.context_processors.links',
+    'blog.context_processors.categories',
+    'blog.context_processors.archives',
+    'blog.context_processors.pages',
+    'blog.context_processors.links',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -120,13 +121,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'public_html.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(ROOTDIR, "templates"),
+    os.path.join(PROJECT_PATH, "templates"),
 )
 
 INSTALLED_APPS = (
@@ -139,7 +140,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.comments',
     'django.contrib.sitemaps',
-    'public_html.blog',
+    'blog',
 )
 
 # A sample logging configuration. The only tangible logging
